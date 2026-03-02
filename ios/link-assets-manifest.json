@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/K2D-SemiBold.ttf",
+      "sha1": "dc5eddeb063a9ac043ba101ae8b0afe9a75a814e"
+    },
+    {
+      "path": "src/assets/fonts/K2D-Bold.ttf",
+      "sha1": "a1c0d2ca862a2e6e95725c5b693da7b4f13c14ae"
+    },
+    {
+      "path": "src/assets/fonts/K2D-Medium.ttf",
+      "sha1": "fb3f0367528e94dde5f96fde52280fa70aa352f4"
+    }
+  ]
+}
