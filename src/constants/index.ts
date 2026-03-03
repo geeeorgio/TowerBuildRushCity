@@ -4,3 +4,5 @@ export * from './fonts';
 export * from './quiz';
 export * from './gameInfo';
 export * from './images';
+export * from './buildings';
+export * from './skins';
