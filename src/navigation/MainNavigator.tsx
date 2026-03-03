@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { MENU_ITEMS } from 'src/constants';
 import {
   AboutScreen,
   CityScreen,
@@ -29,28 +30,29 @@ const MainNavigator = () => {
         name="CityScreen"
         component={CityScreen}
         options={{
-          title: 'My city',
+          title: MENU_ITEMS.find((item) => item.name === 'CityScreen')?.title,
         }}
       />
       <MainStack.Screen
         name="GameScreen"
         component={GameScreen}
         options={{
-          title: 'Mini game',
+          title: MENU_ITEMS.find((item) => item.name === 'GameScreen')?.title,
         }}
       />
       <MainStack.Screen
         name="QuizScreen"
         component={QuizScreen}
         options={{
-          title: 'Quiz',
+          title: MENU_ITEMS.find((item) => item.name === 'QuizScreen')?.title,
         }}
       />
       <MainStack.Screen
         name="CollectionScreen"
         component={CollectionScreen}
         options={{
-          title: 'Collection',
+          title: MENU_ITEMS.find((item) => item.name === 'CollectionScreen')
+            ?.title,
         }}
       />
       <MainStack.Screen
@@ -58,7 +60,7 @@ const MainNavigator = () => {
         component={AboutScreen}
         options={{
           animation: 'slide_from_bottom',
-          title: 'About',
+          title: MENU_ITEMS.find((item) => item.name === 'AboutScreen')?.title,
         }}
       />
     </MainStack.Navigator>

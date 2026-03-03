@@ -2,19 +2,19 @@ export const ONBOARD_TEXT = {
   onboarding1: {
     title: 'Let’s Build This City',
     description:
-      'We’ve got one building and big plans. To grow this city, we need bricks. Earn them and start building.',
+      'We’ve got one building and big plans. \n To grow this city, we need bricks. \n Earn them and start building.',
     btn_text: 'Start Building',
   },
   onboarding2: {
     title: 'Train Your Focus',
     description:
-      'Watch the building order carefully. Repeat it correctly to win bricks. Three rounds. Stay sharp.',
+      'Watch the building order carefully. \n Repeat it correctly to win bricks. \n Three rounds. Stay sharp.',
     btn_text: 'Play and Earn',
   },
   onboarding3: {
     title: 'Lead Like a Mayor',
     description:
-      'Answer city improvement questions. Get 3 or more right and unlock collectible wallpapers.',
+      'Answer city improvement questions. \n Get 3 or more right and unlock collectible wallpapers.',
     btn_text: 'Let’s Grow the City',
   },
 };

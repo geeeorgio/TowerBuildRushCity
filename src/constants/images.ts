@@ -1,5 +1,6 @@
 export const MAIN_BACKGROUND = require('src/assets/images/bckgd/bckgd.png');
 
+export const LOGO_IMG = require('src/assets/images/bckgd/icon.png');
 export const PLATE_FRAME = require('src/assets/images/items/plate.png');
 export const BRICK_FRAME = require('src/assets/images/items/brick.png');
 export const MINI_GAME_IMG = require('src/assets/images/items/mini_game.png');

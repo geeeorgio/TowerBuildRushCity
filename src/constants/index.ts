@@ -6,3 +6,5 @@ export * from './gameInfo';
 export * from './images';
 export * from './buildings';
 export * from './skins';
+export * from './iconsMap';
+export * from './navigationMenu';

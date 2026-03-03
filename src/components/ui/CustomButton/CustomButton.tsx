@@ -1,0 +1,30 @@
+import type { PressableProps } from 'react-native';
+import { Pressable } from 'react-native';
+
+import { styles } from './styles';
+
+interface CustomButtonProps extends PressableProps {
+  variant?: 'blue' | 'green' | 'red' | 'yellow';
+}
+
+const CustomButton = ({
+  style,
+  variant = 'yellow',
+  disabled,
+  ...rest
+}: CustomButtonProps) => {
+  return (
+    <Pressable
+      style={(state) => [
+        styles.container,
+        styles[variant],
+        typeof style === 'function' ? style(state) : style,
+        { opacity: disabled ? 0.6 : 1 },
+      ]}
+      disabled={disabled}
+      {...rest}
+    />
+  );
+};
+
+export default CustomButton;
