@@ -59,7 +59,6 @@ const MainNavigator = () => {
         name="AboutScreen"
         component={AboutScreen}
         options={{
-          animation: 'slide_from_bottom',
           title: MENU_ITEMS.find((item) => item.name === 'AboutScreen')?.title,
         }}
       />

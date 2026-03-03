@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
   },
   yellow: {
     backgroundColor: COLORS.yellow,
-    borderWidth: wp(1),
+    borderWidth: wp(2),
     borderRadius: wp(22),
     borderColor: COLORS.yellow_border,
   },
