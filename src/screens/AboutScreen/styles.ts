@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     gap: hp(20),
   },
   logoContainer: {
-    width: wp(280),
+    width: wp(260),
     aspectRatio: 1,
     borderRadius: wp(28),
     borderWidth: wp(2),
@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: sp(24),
+    fontSize: sp(26),
     color: COLORS.yellow,
     textAlign: 'center',
     textShadowColor: COLORS.yellow_border,

@@ -4,7 +4,7 @@ import type { Building } from 'src/types';
 
 export const BUILDINGS_LIST: Building[] = [
   {
-    id: 'bd_1',
+    id: 'bd_1_default',
     image: BUILDINGS_IMAGES.bd_1,
     isOpen: true,
     price: 0,

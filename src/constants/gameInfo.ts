@@ -1,3 +1,5 @@
+import { GUIDE_MAN_IMAGES } from './images';
+
 export const ONBOARD_TEXT = {
   onboarding1: {
     title: 'Let’s Build This City',
@@ -29,7 +31,7 @@ export const MINI_GAME_INFO = {
 export const NO_COLLECTIONS_INFO = {
   title: 'Wallpaper',
   description: `You don't have a collection yet. You need to test your knowledge to get wallpapers`,
-  btn_text: 'View all',
+  img: GUIDE_MAN_IMAGES.brick_man,
 };
 
 export const ABOUT_INFO = {

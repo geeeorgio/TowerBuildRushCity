@@ -29,7 +29,7 @@ const AboutScreen = () => {
         </CustomContainer>
       </View>
 
-      <CustomButton style={styles.btn} onPress={handleShare}>
+      <CustomButton style={styles.btn} onPress={() => handleShare()}>
         <CustomText style={styles.btnText}>{ABOUT_INFO.btn_text}</CustomText>
       </CustomButton>
     </View>

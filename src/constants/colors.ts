@@ -19,5 +19,5 @@ export const COLORS = {
   blue_gradient: ['#53ACFE', '#1A70BE'],
 
   btn_light_overlay: 'rgba(255, 255, 255, 0.1)',
-  btn_dark_overlay: 'rgba(0, 0, 0, 0.2)',
+  btn_dark_overlay: 'rgba(0, 0, 0, 0.6)',
 };

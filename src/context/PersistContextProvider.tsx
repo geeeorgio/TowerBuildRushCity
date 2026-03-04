@@ -7,6 +7,7 @@ import {
   useState,
 } from 'react';
 
+import { BUILDINGS_LIST, SKINS_LIST } from 'src/constants';
 import type { PersistContextType } from 'src/types';
 import { getItemFromStorage, setItemInStorage } from 'src/utils';
 
@@ -18,7 +19,9 @@ export const PersistContextProvider = ({
   children: ReactNode;
 }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [openedBuildings, setOpenedBuildings] = useState<string[]>([]);
+  const [openedBuildings, setOpenedBuildings] = useState<string[]>([
+    'bd_1_default',
+  ]);
   const [collectedSkins, setCollectedSkins] = useState<string[]>([]);
   const [bricksCount, setBricksCount] = useState<number>(0);
 
@@ -58,6 +61,17 @@ export const PersistContextProvider = ({
     });
   }, []);
 
+  const savedBuildings = useMemo(() => {
+    const list = BUILDINGS_LIST.map((building) => {
+      return {
+        ...building,
+        isOpen: openedBuildings.includes(building.id),
+      };
+    });
+
+    return list;
+  }, [openedBuildings]);
+
   const setCollectedContextSkins = useCallback((skinId: string) => {
     setCollectedSkins((prev) => {
       if (prev.includes(skinId)) return prev;
@@ -68,6 +82,17 @@ export const PersistContextProvider = ({
       return newState;
     });
   }, []);
+
+  const savedSkins = useMemo(() => {
+    const list = SKINS_LIST.map((skin) => {
+      return {
+        ...skin,
+        isOpen: collectedSkins.includes(skin.id),
+      };
+    });
+
+    return list;
+  }, [collectedSkins]);
 
   const incrementBricksContextCount = useCallback((value: number) => {
     if (value < 0) return;
@@ -96,8 +121,10 @@ export const PersistContextProvider = ({
   const value = useMemo(
     () => ({
       isContextLoading: isLoading,
+      buildingsContextList: savedBuildings,
       openedContextBuildings: openedBuildings,
       collectedContextSkins: collectedSkins,
+      skinsContextList: savedSkins,
       bricksContextCount: bricksCount,
       setOpenedContextBuildings,
       setCollectedContextSkins,
@@ -109,6 +136,8 @@ export const PersistContextProvider = ({
       openedBuildings,
       collectedSkins,
       bricksCount,
+      savedBuildings,
+      savedSkins,
       setOpenedContextBuildings,
       setCollectedContextSkins,
       incrementBricksContextCount,

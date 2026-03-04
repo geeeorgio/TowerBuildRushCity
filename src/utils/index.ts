@@ -3,3 +3,4 @@ export * from './storage';
 export * from './shuffle';
 export * from './handleShare';
 export * from './formatTime';
+export * from './convertNumber';

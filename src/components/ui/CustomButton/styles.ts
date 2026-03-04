@@ -4,6 +4,7 @@ import { COLORS } from 'src/constants';
 import { wp } from 'src/utils';
 
 export const styles = StyleSheet.create({
+  default: {},
   container: {
     borderRadius: wp(22),
     borderWidth: wp(2),
