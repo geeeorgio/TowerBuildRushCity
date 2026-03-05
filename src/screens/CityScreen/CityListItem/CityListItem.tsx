@@ -1,6 +1,7 @@
 import { Image, View } from 'react-native';
 
 import BricksCountBar from '../BricksCountBar/BricksCountBar';
+import BuildingProgressBar from '../BuildinProgressBar/BuildingProgressBar';
 
 import { styles } from './styles';
 
@@ -35,9 +36,15 @@ const CityListItem = ({ building, onOpenBuildingMode }: CityListItemProps) => {
           style={styles.plateImage}
         />
 
-        {!building.isOpen && (
+        {!building.isOpen && !building.isBuilding && (
           <View style={styles.bricksCountBarContainer}>
             <BricksCountBar count={building.price} variant="small" />
+          </View>
+        )}
+
+        {building.isBuilding && (
+          <View style={styles.buildingProgressContainer}>
+            <BuildingProgressBar />
           </View>
         )}
       </View>

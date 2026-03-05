@@ -3,6 +3,7 @@ export const STORAGE_KEYS = [
   'opened_buildings',
   'collected_skins',
   'bricks_count',
+  'building_timestamps',
 ] as const;
 
 export type StorageKey = (typeof STORAGE_KEYS)[number];

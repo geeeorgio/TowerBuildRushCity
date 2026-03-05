@@ -9,12 +9,12 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: wp(6),
+    gap: wp(4),
   },
   brickImageContainer: {
     flex: 0.3,
     padding: wp(4),
-    borderRadius: wp(12),
+    borderRadius: wp(10),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: wp(12),
+    borderRadius: wp(10),
     paddingHorizontal: wp(10),
   },
   bricksCountText: {

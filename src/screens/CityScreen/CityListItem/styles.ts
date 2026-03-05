@@ -1,36 +1,42 @@
 import { StyleSheet } from 'react-native';
 
-import { hp } from 'src/utils';
 export const styles = StyleSheet.create({
   item: {
     flex: 1,
-    height: hp(100),
+    aspectRatio: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
   buildingComposition: {
     width: '100%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'flex-end',
     position: 'relative',
   },
   buildingImage: {
-    width: '95%',
-    height: '90%',
+    width: '80%',
+    height: '80%',
     zIndex: 3,
+    marginBottom: '-12%',
   },
   plateImage: {
-    position: 'absolute',
-    bottom: -hp(12),
     width: '100%',
-    height: hp(24),
+    height: '20%',
     zIndex: 1,
   },
   bricksCountBarContainer: {
     position: 'absolute',
     width: '90%',
-    bottom: hp(24),
+    bottom: '35%',
     zIndex: 10,
     alignSelf: 'center',
+  },
+  buildingProgressContainer: {
+    position: 'absolute',
+    width: '100%',
+    height: '85%',
+    bottom: '15%',
+    zIndex: 10,
   },
 });

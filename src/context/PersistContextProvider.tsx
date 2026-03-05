@@ -8,7 +8,7 @@ import {
 } from 'react';
 
 import { BUILDINGS_LIST, SKINS_LIST } from 'src/constants';
-import type { PersistContextType } from 'src/types';
+import type { BuildingTimestamp, PersistContextType } from 'src/types';
 import { getItemFromStorage, setItemInStorage } from 'src/utils';
 
 export const PersistContext = createContext<PersistContextType | null>(null);
@@ -23,15 +23,19 @@ export const PersistContextProvider = ({
     'bd_1_default',
   ]);
   const [collectedSkins, setCollectedSkins] = useState<string[]>([]);
-  const [bricksCount, setBricksCount] = useState<number>(0);
+  const [bricksCount, setBricksCount] = useState<number>(500);
+  const [buildingTimestamp, setBuildingTimestamp] =
+    useState<BuildingTimestamp | null>(null);
 
   useEffect(() => {
     const init = async () => {
-      const [savedBuildings, savedSkins, savedCount] = await Promise.all([
-        getItemFromStorage<string[]>('opened_buildings'),
-        getItemFromStorage<string[]>('collected_skins'),
-        getItemFromStorage<number>('bricks_count'),
-      ]);
+      const [savedBuildings, savedSkins, savedCount, savedBuildingTimestamp] =
+        await Promise.all([
+          getItemFromStorage<string[]>('opened_buildings'),
+          getItemFromStorage<string[]>('collected_skins'),
+          getItemFromStorage<number>('bricks_count'),
+          getItemFromStorage<BuildingTimestamp>('building_timestamps'),
+        ]);
 
       if (savedBuildings && Array.isArray(savedBuildings)) {
         setOpenedBuildings(savedBuildings);
@@ -42,12 +46,31 @@ export const PersistContextProvider = ({
       if (typeof savedCount === 'number' && savedCount >= 0) {
         setBricksCount(savedCount);
       }
+      if (
+        savedBuildingTimestamp !== null &&
+        'id' in savedBuildingTimestamp &&
+        'timestamp' in savedBuildingTimestamp
+      ) {
+        setBuildingTimestamp(savedBuildingTimestamp);
+      }
 
       setIsLoading(false);
     };
 
     init();
   }, []);
+
+  const savedBuildings = useMemo(() => {
+    const list = BUILDINGS_LIST.map((building) => {
+      return {
+        ...building,
+        isOpen: openedBuildings.includes(building.id),
+        isBuilding: buildingTimestamp?.id === building.id,
+      };
+    });
+
+    return list;
+  }, [openedBuildings, buildingTimestamp]);
 
   const setOpenedContextBuildings = useCallback((buildingId: string) => {
     setOpenedBuildings((prev) => {
@@ -61,16 +84,22 @@ export const PersistContextProvider = ({
     });
   }, []);
 
-  const savedBuildings = useMemo(() => {
-    const list = BUILDINGS_LIST.map((building) => {
-      return {
-        ...building,
-        isOpen: openedBuildings.includes(building.id),
-      };
-    });
+  const setIsBuildingContext = useCallback(
+    (buildingId: string) => {
+      const building = savedBuildings.find((b) => b.id === buildingId);
+      if (!building) return;
 
-    return list;
-  }, [openedBuildings]);
+      const newTimestamp = {
+        id: buildingId,
+        timestamp: Date.now() + building.timeToBuild,
+        totalDuration: building.timeToBuild,
+      };
+
+      setBuildingTimestamp(newTimestamp);
+      setItemInStorage('building_timestamps', newTimestamp);
+    },
+    [savedBuildings],
+  );
 
   const setCollectedContextSkins = useCallback((skinId: string) => {
     setCollectedSkins((prev) => {
@@ -118,6 +147,27 @@ export const PersistContextProvider = ({
     });
   }, []);
 
+  useEffect(() => {
+    if (!buildingTimestamp) return;
+
+    const remaining = buildingTimestamp.timestamp - Date.now();
+
+    if (remaining <= 0) {
+      setOpenedContextBuildings(buildingTimestamp.id);
+      setBuildingTimestamp(null);
+      setItemInStorage('building_timestamps', null);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setOpenedContextBuildings(buildingTimestamp.id);
+      setBuildingTimestamp(null);
+      setItemInStorage('building_timestamps', null);
+    }, remaining);
+
+    return () => clearTimeout(timer);
+  }, [buildingTimestamp, setOpenedContextBuildings]);
+
   const value = useMemo(
     () => ({
       isContextLoading: isLoading,
@@ -126,7 +176,9 @@ export const PersistContextProvider = ({
       collectedContextSkins: collectedSkins,
       skinsContextList: savedSkins,
       bricksContextCount: bricksCount,
+      buildingTimestamp,
       setOpenedContextBuildings,
+      setIsBuildingContext,
       setCollectedContextSkins,
       incrementBricksContextCount,
       decrementBricksContextCount,
@@ -138,7 +190,9 @@ export const PersistContextProvider = ({
       bricksCount,
       savedBuildings,
       savedSkins,
+      buildingTimestamp,
       setOpenedContextBuildings,
+      setIsBuildingContext,
       setCollectedContextSkins,
       incrementBricksContextCount,
       decrementBricksContextCount,

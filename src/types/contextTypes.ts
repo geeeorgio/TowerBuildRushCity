@@ -1,4 +1,4 @@
-import type { Building, Skin } from './gameplay';
+import type { Building, BuildingTimestamp, Skin } from './gameplay';
 
 export type PersistContextType = {
   isContextLoading: boolean;
@@ -6,6 +6,8 @@ export type PersistContextType = {
   buildingsContextList: Building[];
   openedContextBuildings: string[];
   setOpenedContextBuildings: (value: string) => void;
+  setIsBuildingContext: (buildingId: string) => void;
+  buildingTimestamp: BuildingTimestamp | null;
   //
   collectedContextSkins: string[];
   setCollectedContextSkins: (value: string) => void;

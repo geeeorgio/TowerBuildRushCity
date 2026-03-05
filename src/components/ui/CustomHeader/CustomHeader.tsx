@@ -14,16 +14,21 @@ import { hp, wp } from 'src/utils';
 
 interface CustomHeaderProps {
   title: string;
+  onGoBack?: () => void;
 }
 
-const CustomHeader = ({ title }: CustomHeaderProps) => {
+const CustomHeader = ({ title, onGoBack }: CustomHeaderProps) => {
   const navigation = useNavigation<MainStackNavigationProp>();
 
   const handleGoBack = () => {
-    if (navigation.canGoBack()) {
-      navigation.goBack();
+    if (onGoBack) {
+      onGoBack();
     } else {
-      navigation.navigate('HomeScreen');
+      if (navigation.canGoBack()) {
+        navigation.goBack();
+      } else {
+        navigation.navigate('HomeScreen');
+      }
     }
   };
 

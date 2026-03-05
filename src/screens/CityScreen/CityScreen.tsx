@@ -11,23 +11,28 @@ import { usePersistContext } from 'src/hooks';
 import type { Building } from 'src/types';
 
 const CityScreen = () => {
-  const { buildingsContextList, bricksContextCount } = usePersistContext();
+  const {
+    buildingsContextList,
+    bricksContextCount,
+    setIsBuildingContext,
+    decrementBricksContextCount,
+  } = usePersistContext();
 
-  const [showBuildingMode, setShowBuildingMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const buildingInProgress = buildingsContextList.some((b) => b.isBuilding);
 
   const handleOpenBuildingMode = (building: Building) => {
-    if (showBuildingMode) {
-      setErrorMessage('Please wait for the current building to be built.');
+    if (buildingInProgress) {
+      setErrorMessage('Please wait for the current building to be built');
       return;
     }
-
     if (bricksContextCount < building.price) {
       setErrorMessage('Not enough bricks');
       return;
     }
 
-    setShowBuildingMode(true);
+    decrementBricksContextCount(building.price);
+    setIsBuildingContext(building.id);
   };
 
   return (

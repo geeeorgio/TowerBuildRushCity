@@ -39,3 +39,9 @@ export const ABOUT_INFO = {
   description: `Build your own growing city from the ground up by earning resources through skill-based mini games and knowledge challenges. Plan wisely, expand strategically, and watch your town evolve into a thriving urban hub.`,
   btn_text: 'Share',
 };
+
+export const GAME_ALERT_INFO = {
+  title: `Are you sure you want to quit? \n You will lose your current progress`,
+  quitBtnText: 'Quit',
+  continueBtnText: 'Continue',
+};
