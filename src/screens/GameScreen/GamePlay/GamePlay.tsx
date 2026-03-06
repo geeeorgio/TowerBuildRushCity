@@ -13,11 +13,11 @@ import type { Building, EmptySlotType } from 'src/types';
 
 interface GamePlayProps {
   currentRoundBuildings: Building[];
-  pickedBuildings: Building[] | EmptySlotType[];
+  pickedBuildings: EmptySlotType[];
   currentRound: number;
   onPickBuilding: (buildingId: string, slotIndex: number) => void;
   nextButtonText: string;
-  onFinishRound: () => void;
+  onFinishRound: (earnedBricks: number) => void;
   roundDuration: number;
 }
 
@@ -33,15 +33,27 @@ const GamePlay = ({
   const [showRoundResult, setShowRoundResult] = useState<boolean>(false);
   const [showVariants, setShowVariants] = useState(false);
   const [activeSlotIndex, setActiveSlotIndex] = useState<number | null>(null);
+  const [correctIds, setCorrectIds] = useState<boolean[]>([]);
+
+  const handleFinishRound = () => {
+    const allCorrect = correctIds.every(Boolean);
+    const earnedBricks = allCorrect ? 10 : 0;
+
+    onFinishRound(earnedBricks);
+  };
 
   const handleContinueRound = () => {
+    setCorrectIds(
+      currentRoundBuildings.map((b, idx) => {
+        return pickedBuildings[idx].correctId === b.id;
+      }),
+    );
+
     setShowRoundResult(true);
   };
 
   const handleOpenVariants = (slotId: string) => {
-    const slotIndex = pickedBuildings.findIndex((b) =>
-      'image' in b ? b.id === slotId : b._id === slotId,
-    );
+    const slotIndex = pickedBuildings.findIndex((b) => b._id === slotId);
 
     setActiveSlotIndex(slotIndex);
     setShowVariants(true);
@@ -62,17 +74,17 @@ const GamePlay = ({
           style={styles.roundResultContainer}
         >
           <View style={styles.imgContainer}>
-            <Image source={GUIDE_MAN_IMAGES.brick_man} style={styles.img} />
+            <Image
+              source={GUIDE_MAN_IMAGES.brick_man}
+              style={styles.img}
+              resizeMode="contain"
+            />
           </View>
           <View style={styles.infoContainer}>
             <CustomText style={styles.title}>
-              Round {currentRound} Result
+              Round {currentRound} results
             </CustomText>
-            <CustomButton
-              variant="blue"
-              onPress={onFinishRound}
-              style={styles.btn}
-            >
+            <CustomButton onPress={handleFinishRound} style={styles.btn}>
               <CustomText style={styles.btnText}>{nextButtonText}</CustomText>
             </CustomButton>
           </View>
@@ -90,10 +102,12 @@ const GamePlay = ({
         <BuildingsList
           data={pickedBuildings}
           onPickBuilding={handleOpenVariants}
+          disabled={showRoundResult}
+          correctIds={correctIds}
         />
       </View>
 
-      {showVariants && (
+      {!showRoundResult && showVariants && (
         <View style={styles.variantsContainer}>
           <VariantsList
             data={currentRoundBuildings}

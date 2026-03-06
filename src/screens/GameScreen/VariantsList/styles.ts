@@ -7,9 +7,9 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   listContainer: {
-    gap: hp(10),
+    gap: 0,
   },
   listFooter: {
-    height: hp(40),
+    height: hp(20),
   },
 });

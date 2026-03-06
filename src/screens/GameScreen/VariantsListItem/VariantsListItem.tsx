@@ -14,34 +14,54 @@ import { hp, wp } from 'src/utils';
 interface VariantsListItemProps {
   item: Building;
   onPickVariant: (buildingId: string) => void;
+  onNext: () => void;
+  onPrev: () => void;
+  isFirst: boolean;
+  isLast: boolean;
 }
 
-const VariantsListItem = ({ item, onPickVariant }: VariantsListItemProps) => {
+const VariantsListItem = ({
+  item,
+  onPickVariant,
+  onNext,
+  onPrev,
+  isFirst,
+  isLast,
+}: VariantsListItemProps) => {
   return (
-    <CustomContainer colorVariant="lightBlue" style={styles.item}>
-      <View style={styles.variantContainer}>
-        <CustomButton style={styles.iconContainer} onPress={() => {}}>
-          <CustomIcon name="leftArr" width={wp(24)} height={hp(24)} />
-        </CustomButton>
-        <CustomContainer colorVariant="lightBlue" style={styles.imageContainer}>
+    <View style={styles.item}>
+      <CustomContainer colorVariant="lightBlue" style={styles.variantContainer}>
+        {!isFirst ? (
+          <CustomButton style={styles.iconContainer} onPress={onPrev}>
+            <CustomIcon name="leftArr" width={wp(20)} height={hp(20)} />
+          </CustomButton>
+        ) : (
+          <View style={styles.iconContainer} />
+        )}
+
+        <CustomContainer colorVariant="darkBlue" style={styles.imageContainer}>
           <Image
             source={item.image}
             resizeMode="contain"
             style={styles.image}
           />
         </CustomContainer>
-        <CustomButton style={styles.iconContainer} onPress={() => {}}>
-          <CustomIcon name="rightArr" width={wp(24)} height={hp(24)} />
-        </CustomButton>
-      </View>
 
+        {!isLast ? (
+          <CustomButton style={styles.iconContainer} onPress={onNext}>
+            <CustomIcon name="rightArr" width={wp(24)} height={hp(24)} />
+          </CustomButton>
+        ) : (
+          <View style={styles.iconContainer} />
+        )}
+      </CustomContainer>
       <CustomButton
         style={styles.pickVariantButton}
         onPress={() => onPickVariant(item.id)}
       >
         <CustomText style={styles.pickVariantButtonText}>Choose</CustomText>
       </CustomButton>
-    </CustomContainer>
+    </View>
   );
 };
 

@@ -11,6 +11,7 @@ import { styles } from './styles';
 
 import { CustomHeader } from 'src/components';
 import { BUILDINGS_LIST } from 'src/constants';
+import { usePersistContext } from 'src/hooks';
 import type {
   GamePlayType,
   GameStatusType,
@@ -34,17 +35,20 @@ const createInitialSettings = (): GamePlayType => ({
       correctId: '',
       slotImage: null,
     })),
+    earnedBricks: 0,
   })),
 });
 
 const GameScreen = () => {
   const navigation = useNavigation<MainStackNavigationProp>();
+  const { incrementBricksContextCount } = usePersistContext();
 
   const [status, setStatus] = useState<GameStatusType>('intro');
   const [settings, setSettings] = useState<GamePlayType>(
     createInitialSettings(),
   );
   const [showAlert, setShowAlert] = useState(false);
+  const [totalBricks, setTotalBricks] = useState(0);
 
   const currentRoundData = settings.roundInfo[settings.currentRound - 1];
 
@@ -73,18 +77,29 @@ const GameScreen = () => {
     }));
   };
 
-  const handleFinishRound = () => {
-    if (settings.currentRound === settings.totalRounds) {
-      setStatus('result');
-      return;
-    }
+  const handleFinishRound = (earnedBricks: number) => {
+    const isLastRound = settings.currentRound === settings.totalRounds;
 
     setSettings((prev) => ({
       ...prev,
-      currentRound: Math.min(prev.currentRound + 1, prev.totalRounds),
+      currentRound: isLastRound ? prev.currentRound : prev.currentRound + 1,
+      roundInfo: prev.roundInfo.map((round) =>
+        round.roundNumber === prev.currentRound
+          ? { ...round, earnedBricks }
+          : round,
+      ),
     }));
 
-    setStatus('setup');
+    if (isLastRound) {
+      const previousBricks = settings.roundInfo
+        .filter((r) => r.roundNumber !== settings.currentRound)
+        .reduce((sum, r) => sum + (r.earnedBricks ?? 0), 0);
+
+      incrementBricksContextCount(previousBricks + earnedBricks);
+      setTotalBricks(previousBricks + earnedBricks);
+    }
+
+    setStatus(isLastRound ? 'result' : 'setup');
   };
 
   const nextButtonText =
@@ -130,7 +145,7 @@ const GameScreen = () => {
         />
       )}
 
-      {status === 'result' && <GameResult resultInfo={settings} />}
+      {status === 'result' && <GameResult totalBricks={totalBricks} />}
 
       {showAlert && (
         <GameAlertModal

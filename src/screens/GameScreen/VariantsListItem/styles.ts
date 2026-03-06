@@ -1,33 +1,40 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
-import { FONTS } from 'src/constants';
+import { COLORS } from 'src/constants';
 import { hp, sp, wp } from 'src/utils';
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   item: {
-    flex: 1,
+    width: SCREEN_WIDTH,
     borderRadius: wp(14),
     alignItems: 'center',
     justifyContent: 'center',
-    padding: wp(4),
+    gap: hp(16),
   },
   variantContainer: {
     width: '100%',
-    height: hp(150),
+    height: hp(140),
+    paddingVertical: hp(6),
+    paddingHorizontal: wp(16),
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   iconContainer: {
-    flex: 0.2,
-    width: wp(40),
-    height: wp(40),
+    opacity: 1,
+    width: wp(60),
+    height: wp(60),
+    borderRadius: wp(16),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   imageContainer: {
-    flex: 1,
-    width: '100%',
-    height: hp(100),
+    height: '100%',
+    aspectRatio: 1,
     borderRadius: wp(14),
+    padding: wp(16),
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -36,14 +43,14 @@ export const styles = StyleSheet.create({
     height: '100%',
   },
   pickVariantButton: {
-    width: '100%',
-    height: wp(40),
+    width: SCREEN_WIDTH - wp(33),
     borderRadius: wp(14),
+    paddingVertical: hp(4),
     alignItems: 'center',
     justifyContent: 'center',
   },
   pickVariantButtonText: {
     fontSize: sp(24),
-    fontFamily: FONTS.Bold,
+    color: COLORS.black,
   },
 });

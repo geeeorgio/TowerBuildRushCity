@@ -13,6 +13,6 @@ export const styles = StyleSheet.create({
     gap: wp(10),
   },
   listFooter: {
-    height: hp(40),
+    height: hp(16),
   },
 });

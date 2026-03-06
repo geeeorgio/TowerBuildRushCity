@@ -34,6 +34,7 @@ export type RoundInfoType = {
   roundNumber: number;
   buildingsList: Building[];
   pickedBuildings: EmptySlotType[];
+  earnedBricks: number;
 };
 
 export type GamePlayType = {

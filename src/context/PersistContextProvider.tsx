@@ -127,6 +127,8 @@ export const PersistContextProvider = ({
     if (value < 0) return;
 
     setBricksCount((prev) => {
+      if (value === 0) return prev;
+
       const newState = prev + value;
 
       setItemInStorage('bricks_count', newState);

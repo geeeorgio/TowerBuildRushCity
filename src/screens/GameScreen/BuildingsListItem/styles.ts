@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { FONTS } from 'src/constants';
+import { COLORS, FONTS } from 'src/constants';
 import { sp, wp } from 'src/utils';
 
 export const styles = StyleSheet.create({
@@ -11,6 +11,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: wp(4),
+  },
+  pressed: {
+    borderColor: COLORS.white,
   },
   image: {
     width: '85%',

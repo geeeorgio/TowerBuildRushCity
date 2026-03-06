@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { FlatList, View } from 'react-native';
 
 import VariantsListItem from '../VariantsListItem/VariantsListItem';
@@ -13,17 +13,40 @@ interface VariantsListProps {
 }
 
 const VariantsList = ({ data, onPickVariant }: VariantsListProps) => {
-  const renderItem = useCallback(
-    ({ item }: { item: Building }) => {
-      return <VariantsListItem item={item} onPickVariant={onPickVariant} />;
+  const flatListRef = useRef<FlatList>(null);
+  const [_currentIndex, setCurrentIndex] = useState(0);
+
+  const scrollToIndex = useCallback(
+    (index: number) => {
+      if (index < 0 || index >= data.length) return;
+
+      flatListRef.current?.scrollToIndex({ index, animated: true });
+      setCurrentIndex(index);
     },
-    [onPickVariant],
+    [data.length],
+  );
+
+  const renderItem = useCallback(
+    ({ item, index }: { item: Building; index: number }) => {
+      return (
+        <VariantsListItem
+          item={item}
+          onPickVariant={onPickVariant}
+          onNext={() => scrollToIndex(index + 1)}
+          onPrev={() => scrollToIndex(index - 1)}
+          isFirst={index === 0}
+          isLast={index === data.length - 1}
+        />
+      );
+    },
+    [onPickVariant, scrollToIndex, data.length],
   );
 
   const keyExtractor = (item: Building) => item.id;
 
   return (
     <FlatList
+      ref={flatListRef}
       data={data}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
@@ -31,6 +54,7 @@ const VariantsList = ({ data, onPickVariant }: VariantsListProps) => {
       showsHorizontalScrollIndicator={false}
       pagingEnabled
       style={styles.list}
+      snapToAlignment="center"
       contentContainerStyle={styles.listContainer}
       ListFooterComponent={<View style={styles.listFooter} />}
     />

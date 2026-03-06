@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingBottom: hp(50),
-    gap: hp(24),
+    gap: hp(16),
   },
   header: {
     width: '100%',

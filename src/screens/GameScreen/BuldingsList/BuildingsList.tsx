@@ -10,14 +10,28 @@ import type { Building, EmptySlotType } from 'src/types';
 interface BuildingsListProps {
   data: Building[] | EmptySlotType[];
   onPickBuilding?: (buildingId: string) => void;
+  disabled?: boolean;
+  correctIds?: boolean[];
 }
 
-const BuildingsList = ({ data, onPickBuilding }: BuildingsListProps) => {
+const BuildingsList = ({
+  data,
+  onPickBuilding,
+  disabled,
+  correctIds,
+}: BuildingsListProps) => {
   const renderItem = useCallback(
-    ({ item }: { item: Building | EmptySlotType }) => {
-      return <BuildingsListItem item={item} onPickBuilding={onPickBuilding} />;
+    ({ item, index }: { item: Building | EmptySlotType; index: number }) => {
+      return (
+        <BuildingsListItem
+          item={item}
+          onPickBuilding={onPickBuilding}
+          disabled={disabled}
+          correctId={correctIds?.[index]}
+        />
+      );
     },
-    [onPickBuilding],
+    [onPickBuilding, disabled, correctIds],
   );
 
   const keyExtractor = (item: Building | EmptySlotType) => {
