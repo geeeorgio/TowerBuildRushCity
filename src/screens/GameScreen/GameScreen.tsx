@@ -27,8 +27,13 @@ const createInitialSettings = (): GamePlayType => ({
     roundNumber: index + 1,
     buildingsList: shuffleArray(BUILDINGS_LIST)
       .slice(0, 8)
-      .map((b) => b.id),
-    pickedBuildings: [],
+      .map((b) => b),
+    pickedBuildings: [...Array(8)].map((__, idx) => ({
+      _id: `empty-${idx}`,
+      content: '+',
+      correctId: '',
+      slotImage: null,
+    })),
   })),
 });
 
@@ -43,14 +48,28 @@ const GameScreen = () => {
 
   const currentRoundData = settings.roundInfo[settings.currentRound - 1];
 
-  const handlePickBuilding = (buildingId: string) => {
+  const handlePickBuilding = (buildingId: string, slotIndex: number) => {
+    const buildingData = BUILDINGS_LIST.find((b) => b.id === buildingId);
+
     setSettings((prev) => ({
       ...prev,
-      roundInfo: prev.roundInfo.map((r) =>
-        r.roundNumber === currentRoundData.roundNumber
-          ? { ...r, pickedBuildings: [...r.pickedBuildings, buildingId] }
-          : r,
-      ),
+      roundInfo: prev.roundInfo.map((round) => {
+        if (round.roundNumber === prev.currentRound) {
+          return {
+            ...round,
+            pickedBuildings: round.pickedBuildings.map((slot, idx) =>
+              idx === slotIndex
+                ? {
+                    ...slot,
+                    correctId: buildingId,
+                    slotImage: buildingData?.image ?? null,
+                  }
+                : slot,
+            ),
+          };
+        }
+        return round;
+      }),
     }));
   };
 
@@ -94,15 +113,20 @@ const GameScreen = () => {
         <GameSetup
           onStartGame={() => setStatus('game')}
           buildingsToPick={currentRoundData.buildingsList}
+          setupTime={settings.setupTime}
+          currentRound={settings.currentRound}
         />
       )}
 
       {status === 'game' && (
         <GamePlay
           currentRoundBuildings={currentRoundData.buildingsList}
+          pickedBuildings={currentRoundData.pickedBuildings}
           onFinishRound={handleFinishRound}
           onPickBuilding={handlePickBuilding}
           nextButtonText={nextButtonText}
+          currentRound={settings.currentRound}
+          roundDuration={settings.roundDuration}
         />
       )}
 

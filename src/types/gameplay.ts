@@ -23,10 +23,17 @@ export type BuildingTimestamp = {
 
 export type GameStatusType = 'intro' | 'setup' | 'game' | 'result';
 
+export type EmptySlotType = {
+  _id: string;
+  content: string;
+  correctId: string;
+  slotImage: ImageSourcePropType | null;
+};
+
 export type RoundInfoType = {
   roundNumber: number;
-  buildingsList: string[];
-  pickedBuildings: string[];
+  buildingsList: Building[];
+  pickedBuildings: EmptySlotType[];
 };
 
 export type GamePlayType = {

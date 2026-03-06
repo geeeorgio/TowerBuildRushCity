@@ -23,7 +23,7 @@ export const PersistContextProvider = ({
     'bd_1_default',
   ]);
   const [collectedSkins, setCollectedSkins] = useState<string[]>([]);
-  const [bricksCount, setBricksCount] = useState<number>(500);
+  const [bricksCount, setBricksCount] = useState<number>(0);
   const [buildingTimestamp, setBuildingTimestamp] =
     useState<BuildingTimestamp | null>(null);
 
