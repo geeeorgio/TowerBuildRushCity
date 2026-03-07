@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Image, View } from 'react-native';
 
 import QuizTimer from '../QuizTimer/QuizTimer';
@@ -43,12 +43,16 @@ const QuizMode = ({ quizState, onNextQuestion }: QuizModeProps) => {
     return selectedAnswer === option ? 'blue' : 'yellow';
   };
 
+  const handleTimeEnd = useCallback(() => {
+    setIsRevealed(true);
+  }, []);
+
   return (
     <View style={styles.container}>
       <QuizTimer
         key={quizState.currentQuestionIdx}
         time={quizState.time}
-        onTimeEnd={() => setIsRevealed(true)}
+        onTimeEnd={handleTimeEnd}
         stopTimer={isRevealed}
       />
 

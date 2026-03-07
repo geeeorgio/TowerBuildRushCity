@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { View } from 'react-native';
 
 import GameAlertModal from '../GameScreen/GameAlertModal/GameAlertModal';
@@ -33,7 +33,7 @@ const QuizScreen = () => {
   const [state, setState] = useState<QuizModeStateType>(createInitialState());
   const [showAlert, setShowAlert] = useState(false);
 
-  const handleNextQuestion = (isCorrect: boolean) => {
+  const handleNextQuestion = useCallback((isCorrect: boolean) => {
     setState((prev) => {
       const nextAnswers = isCorrect
         ? prev.correctAnswers + 1
@@ -54,7 +54,7 @@ const QuizScreen = () => {
         correctAnswers: nextAnswers,
       };
     });
-  };
+  }, []);
 
   const handleQuitGame = () => {
     setShowAlert(false);

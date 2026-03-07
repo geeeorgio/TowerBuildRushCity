@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, FONTS } from 'src/constants';
+import { COLORS } from 'src/constants';
 import { hp, sp, wp } from 'src/utils';
 
 export const styles = StyleSheet.create({
@@ -31,8 +31,7 @@ export const styles = StyleSheet.create({
   fillText: {
     position: 'absolute',
     top: 0,
-    fontSize: sp(8),
-    fontFamily: FONTS.Bold,
+    fontSize: sp(7),
     zIndex: 10,
     alignSelf: 'center',
   },

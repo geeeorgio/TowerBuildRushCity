@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Image, View } from 'react-native';
 
 import BuildingsList from '../BuldingsList/BuildingsList';
@@ -42,7 +42,7 @@ const GamePlay = ({
     onFinishRound(earnedBricks);
   };
 
-  const handleContinueRound = () => {
+  const handleContinueRound = useCallback(() => {
     setCorrectIds(
       currentRoundBuildings.map((b, idx) => {
         return pickedBuildings[idx].correctId === b.id;
@@ -50,7 +50,7 @@ const GamePlay = ({
     );
 
     setShowRoundResult(true);
-  };
+  }, [currentRoundBuildings, pickedBuildings]);
 
   const handleOpenVariants = (slotId: string) => {
     const slotIndex = pickedBuildings.findIndex((b) => b._id === slotId);

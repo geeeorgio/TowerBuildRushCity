@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { View } from 'react-native';
 
 import GameAlertModal from './GameAlertModal/GameAlertModal';
@@ -77,30 +77,38 @@ const GameScreen = () => {
     }));
   };
 
-  const handleFinishRound = (earnedBricks: number) => {
-    const isLastRound = settings.currentRound === settings.totalRounds;
+  const handleFinishRound = useCallback(
+    (earnedBricks: number) => {
+      const isLastRound = settings.currentRound === settings.totalRounds;
 
-    setSettings((prev) => ({
-      ...prev,
-      currentRound: isLastRound ? prev.currentRound : prev.currentRound + 1,
-      roundInfo: prev.roundInfo.map((round) =>
-        round.roundNumber === prev.currentRound
-          ? { ...round, earnedBricks }
-          : round,
-      ),
-    }));
+      setSettings((prev) => ({
+        ...prev,
+        currentRound: isLastRound ? prev.currentRound : prev.currentRound + 1,
+        roundInfo: prev.roundInfo.map((round) =>
+          round.roundNumber === prev.currentRound
+            ? { ...round, earnedBricks }
+            : round,
+        ),
+      }));
 
-    if (isLastRound) {
-      const previousBricks = settings.roundInfo
-        .filter((r) => r.roundNumber !== settings.currentRound)
-        .reduce((sum, r) => sum + (r.earnedBricks ?? 0), 0);
+      if (isLastRound) {
+        const previousBricks = settings.roundInfo
+          .filter((r) => r.roundNumber !== settings.currentRound)
+          .reduce((sum, r) => sum + (r.earnedBricks ?? 0), 0);
 
-      incrementBricksContextCount(previousBricks + earnedBricks);
-      setTotalBricks(previousBricks + earnedBricks);
-    }
+        incrementBricksContextCount(previousBricks + earnedBricks);
+        setTotalBricks(previousBricks + earnedBricks);
+      }
 
-    setStatus(isLastRound ? 'result' : 'setup');
-  };
+      setStatus(isLastRound ? 'result' : 'setup');
+    },
+    [
+      settings.currentRound,
+      settings.totalRounds,
+      settings.roundInfo,
+      incrementBricksContextCount,
+    ],
+  );
 
   const nextButtonText =
     settings.currentRound === settings.totalRounds
@@ -115,6 +123,10 @@ const GameScreen = () => {
       routes: [{ name: 'HomeScreen' }],
     });
   };
+
+  const handleStartGame = useCallback(() => {
+    setStatus('game');
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -135,7 +147,7 @@ const GameScreen = () => {
 
       {status === 'setup' && (
         <GameSetup
-          onStartGame={() => setStatus('game')}
+          onStartGame={handleStartGame}
           buildingsToPick={currentRoundData.buildingsList}
           setupTime={settings.setupTime}
           currentRound={settings.currentRound}

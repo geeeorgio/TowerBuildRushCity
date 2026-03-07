@@ -23,27 +23,18 @@ const GameInfoContainer = ({
   const [timeLeft, setTimeLeft] = useState(setupTime);
 
   useEffect(() => {
-    let isMounted = true;
-
     const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1000) {
-          clearInterval(interval);
-
-          if (isMounted) {
-            onStartGame();
-          }
-          return 0;
-        }
-        return prev - 1000;
-      });
+      setTimeLeft((prev) => (prev > 0 ? prev - 1000 : 0));
     }, 1000);
 
-    return () => {
-      isMounted = false;
-      clearInterval(interval);
-    };
-  }, [onStartGame]);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      onStartGame();
+    }
+  }, [timeLeft, onStartGame]);
 
   return (
     <CustomContainer colorVariant="lightBlue" style={styles.setupContainer}>
