@@ -16,6 +16,8 @@ const QuizTimer = ({ time, onTimeEnd, stopTimer }: QuizTimerProps) => {
   const [timeLeft, setTimeLeft] = useState(time);
 
   useEffect(() => {
+    let isMounted = true;
+
     const interval = setInterval(() => {
       if (stopTimer) {
         clearInterval(interval);
@@ -25,14 +27,19 @@ const QuizTimer = ({ time, onTimeEnd, stopTimer }: QuizTimerProps) => {
       setTimeLeft((prev) => {
         if (prev <= 1000) {
           clearInterval(interval);
-          onTimeEnd();
+          if (isMounted) {
+            onTimeEnd();
+          }
           return 0;
         }
         return prev - 1000;
       });
     }, 1000);
 
-    return () => clearInterval(interval);
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, [onTimeEnd, stopTimer]);
 
   return (

@@ -107,6 +107,15 @@ const GameScreen = () => {
       ? 'Go results'
       : 'Next round';
 
+  const handleQuitGame = () => {
+    setShowAlert(false);
+
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'HomeScreen' }],
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -151,7 +160,7 @@ const GameScreen = () => {
         <GameAlertModal
           isVisible={showAlert}
           onBackToGame={() => setShowAlert(false)}
-          onBackToMenu={() => navigation.navigate('HomeScreen')}
+          onBackToMenu={handleQuitGame}
         />
       )}
     </View>

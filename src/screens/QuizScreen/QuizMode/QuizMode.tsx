@@ -48,7 +48,7 @@ const QuizMode = ({ quizState, onNextQuestion }: QuizModeProps) => {
       <QuizTimer
         key={quizState.currentQuestionIdx}
         time={quizState.time}
-        onTimeEnd={() => onNextQuestion(false)}
+        onTimeEnd={() => setIsRevealed(true)}
         stopTimer={isRevealed}
       />
 

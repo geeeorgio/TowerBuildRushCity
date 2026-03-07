@@ -7,9 +7,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingBottom: hp(50),
+    gap: hp(20),
+    paddingHorizontal: wp(11),
   },
   headerContainer: {
     width: '100%',
-    paddingHorizontal: wp(11),
   },
 });

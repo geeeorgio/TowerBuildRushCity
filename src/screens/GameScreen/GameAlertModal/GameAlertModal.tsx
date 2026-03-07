@@ -9,12 +9,14 @@ interface GameAlertModalProps {
   isVisible: boolean;
   onBackToGame: () => void;
   onBackToMenu: () => void;
+  message?: string | null;
 }
 
 const GameAlertModal = ({
   isVisible,
   onBackToGame,
   onBackToMenu,
+  message,
 }: GameAlertModalProps) => {
   return (
     <Modal
@@ -31,7 +33,9 @@ const GameAlertModal = ({
         onPress={onBackToGame}
       >
         <CustomContainer colorVariant="darkBlue" style={styles.content}>
-          <CustomText style={styles.text}>{GAME_ALERT_INFO.title}</CustomText>
+          <CustomText style={styles.text}>
+            {message ?? GAME_ALERT_INFO.title}
+          </CustomText>
           <View style={styles.btnContainer}>
             <CustomButton onPress={onBackToGame} style={styles.btn}>
               <CustomText style={styles.continueBtnText}>

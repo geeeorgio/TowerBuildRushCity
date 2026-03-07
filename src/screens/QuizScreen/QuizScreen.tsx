@@ -56,6 +56,15 @@ const QuizScreen = () => {
     });
   };
 
+  const handleQuitGame = () => {
+    setShowAlert(false);
+
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'HomeScreen' }],
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -82,7 +91,7 @@ const QuizScreen = () => {
         <GameAlertModal
           isVisible={showAlert}
           onBackToGame={() => setShowAlert(false)}
-          onBackToMenu={() => navigation.navigate('HomeScreen')}
+          onBackToMenu={handleQuitGame}
         />
       )}
     </View>

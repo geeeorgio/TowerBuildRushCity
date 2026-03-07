@@ -6,7 +6,7 @@ import { styles } from './styles';
 import { CustomContainer, CustomText } from 'src/components';
 import { NO_COLLECTIONS_INFO } from 'src/constants';
 
-const EmpryCollection = () => {
+const EmptyCollection = () => {
   return (
     <CustomContainer colorVariant="lightBlue" style={styles.emptyContainer}>
       <View style={styles.emptyImageContainer}>
@@ -28,4 +28,4 @@ const EmpryCollection = () => {
   );
 };
 
-export default EmpryCollection;
+export default EmptyCollection;

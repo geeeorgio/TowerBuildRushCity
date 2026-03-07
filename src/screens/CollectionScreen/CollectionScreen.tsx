@@ -1,13 +1,14 @@
 import { View } from 'react-native';
 
-import EmpryCollection from './EmptyCollection/EmpryCollection';
+import CollectionList from './CollectionList/CollectionList';
+import EmptyCollection from './EmptyCollection/EmptyCollection';
 import { styles } from './styles';
 
 import { CustomHeader } from 'src/components';
 import { usePersistContext } from 'src/hooks';
 
 const CollectionScreen = () => {
-  const { collectedContextSkins } = usePersistContext();
+  const { skinsContextList } = usePersistContext();
 
   return (
     <View style={styles.container}>
@@ -15,7 +16,11 @@ const CollectionScreen = () => {
         <CustomHeader title="Collection" />
       </View>
 
-      {collectedContextSkins.length === 0 && <EmpryCollection />}
+      {skinsContextList.length === 0 && <EmptyCollection />}
+
+      {skinsContextList.length > 0 && (
+        <CollectionList data={skinsContextList} />
+      )}
     </View>
   );
 };
