@@ -44,3 +44,20 @@ export type GamePlayType = {
   roundDuration: number;
   roundInfo: RoundInfoType[];
 };
+
+export type QuizStatusType = 'intro' | 'pending' | 'completed';
+
+export type QuizType = {
+  id: string;
+  question: string;
+  options: string[];
+  correctValue: string;
+};
+
+export type QuizModeStateType = {
+  currentQuestionIdx: number;
+  correctAnswers: number;
+  totalQuestions: number;
+  quizList: QuizType[];
+  time: number;
+};

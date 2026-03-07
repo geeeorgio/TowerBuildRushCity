@@ -1,5 +1,20 @@
 import { StyleSheet } from 'react-native';
 
+import { hp, wp } from 'src/utils';
+
 export const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    paddingBottom: hp(50),
+    gap: hp(24),
+  },
+  headerContainer: {
+    width: '100%',
+    paddingHorizontal: wp(11),
+  },
+  contentContainer: {
+    flex: 1,
+    width: '100%',
+  },
 });

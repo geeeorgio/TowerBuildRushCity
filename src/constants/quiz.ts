@@ -1,32 +1,34 @@
-export const GAME_QUIZ = [
+import type { QuizType } from 'src/types';
+
+export const GAME_QUIZ: QuizType[] = [
   {
-    id: 1,
+    id: 'quiz_1',
     question:
       'What material is most often used for laying walls in residential buildings?',
     options: ['Glass', 'Brick', 'Plastic', 'Rubber'],
     correctValue: 'Brick',
   },
   {
-    id: 2,
+    id: 'quiz_2',
     question: 'What tool is used to check the evenness of the surface?',
     options: ['Hammer', 'Level', 'Saw', 'Screwdriver'],
     correctValue: 'Level',
   },
   {
-    id: 3,
+    id: 'quiz_3',
     question: 'What connects bricks during laying?',
     options: ['PVA glue', 'Sand', 'Mortar', 'Paint'],
     correctValue: 'Mortar',
   },
   {
-    id: 4,
+    id: 'quiz_4',
     question:
       'What element of the building is located on top and protects from rain?',
     options: ['Foundation', 'Floor', 'Roof', 'Stairs'],
     correctValue: 'Roof',
   },
   {
-    id: 5,
+    id: 'quiz_5',
     question: 'What is the foundation for?',
     options: [
       'For decoration',
@@ -37,43 +39,43 @@ export const GAME_QUIZ = [
     correctValue: 'To support the entire building',
   },
   {
-    id: 6,
+    id: 'quiz_6',
     question: 'What tool is used to drive nails?',
     options: ['Pliers', 'Hammer', 'Ruler', 'Drill'],
     correctValue: 'Hammer',
   },
   {
-    id: 7,
+    id: 'quiz_7',
     question: 'What material is transparent and used in windows?',
     options: ['Concrete', 'Metal', 'Glass', 'Stone'],
     correctValue: 'Glass',
   },
   {
-    id: 8,
+    id: 'quiz_8',
     question: 'What is used to measure length?',
     options: ['Tape measure', 'Paintbrush', 'Bucket', 'Flashlight'],
     correctValue: 'Tape measure',
   },
   {
-    id: 9,
+    id: 'quiz_9',
     question: 'What tool drills holes?',
     options: ['Shovel', 'Drill', 'Paintbrush', 'Spatula'],
     correctValue: 'Drill',
   },
   {
-    id: 10,
+    id: 'quiz_10',
     question: 'What part of the building serves as an entrance?',
     options: ['Balcony', 'Door', 'Window', 'Chimney'],
     correctValue: 'Door',
   },
   {
-    id: 11,
+    id: 'quiz_11',
     question: 'What are floor joists most often made of?',
     options: ['Paper', 'Wood or metal', 'Glass', 'Fabric'],
     correctValue: 'Wood or metal',
   },
   {
-    id: 12,
+    id: 'quiz_12',
     question: 'What is a chimney?',
     options: [
       'Part of a staircase',
@@ -84,19 +86,19 @@ export const GAME_QUIZ = [
     correctValue: 'Smoke exhaust pipe',
   },
   {
-    id: 13,
+    id: 'quiz_13',
     question: 'What is the strongest material for a building frame?',
     options: ['Plastic', 'Metal', 'Cardboard', 'Clay'],
     correctValue: 'Metal',
   },
   {
-    id: 14,
+    id: 'quiz_14',
     question: 'What element provides lighting inside a room?',
     options: ['Lamp', 'Crane', 'Wall', 'Door handle'],
     correctValue: 'Lamp',
   },
   {
-    id: 15,
+    id: 'quiz_15',
     question: 'What material is used to make concrete?',
     options: [
       'Sand, cement, water',
@@ -107,13 +109,13 @@ export const GAME_QUIZ = [
     correctValue: 'Sand, cement, water',
   },
   {
-    id: 16,
+    id: 'quiz_16',
     question: 'What equipment is used to lift heavy loads in construction?',
     options: ['Bicycle', 'Crane', 'Car', 'Scooter'],
     correctValue: 'Crane',
   },
   {
-    id: 17,
+    id: 'quiz_17',
     question: 'What is scaffolding for?',
     options: [
       'For decoration',
@@ -124,49 +126,49 @@ export const GAME_QUIZ = [
     correctValue: 'For working at height',
   },
   {
-    id: 18,
+    id: 'quiz_18',
     question: 'What material is used to insulate walls?',
     options: ['Styrofoam', 'Glass', 'Stone', 'Metal'],
     correctValue: 'Styrofoam',
   },
   {
-    id: 19,
+    id: 'quiz_19',
     question: 'What element is between floors?',
     options: ['Balcony', 'Ceiling', 'Lantern', 'Drain'],
     correctValue: 'Ceiling',
   },
   {
-    id: 20,
+    id: 'quiz_20',
     question: 'What is used to paint walls?',
     options: ['Screwdriver', 'Brush or roller', 'File', 'Hammer'],
     correctValue: 'Brush or roller',
   },
   {
-    id: 21,
+    id: 'quiz_21',
     question: 'What material is flexible and used for electrical wiring?',
     options: ['Cable', 'Brick', 'Tile', 'Concrete'],
     correctValue: 'Cable',
   },
   {
-    id: 22,
+    id: 'quiz_22',
     question: 'What element provides ventilation?',
     options: ['Ventilation shaft', 'Floor', 'Carpet', 'Beam'],
     correctValue: 'Ventilation shaft',
   },
   {
-    id: 23,
+    id: 'quiz_23',
     question: 'What tool is used to tighten screws?',
     options: ['Screwdriver', 'Hammer', 'Shovel', 'Lantern'],
     correctValue: 'Screwdriver',
   },
   {
-    id: 24,
+    id: 'quiz_24',
     question: 'What material is often used for facade cladding?',
     options: ['Tile or decorative plaster', 'Paper', 'Foam rubber', 'Fabric'],
     correctValue: 'Tile or decorative plaster',
   },
   {
-    id: 25,
+    id: 'quiz_25',
     question: 'What is a balcony?',
     options: [
       'Interior room',
@@ -177,13 +179,13 @@ export const GAME_QUIZ = [
     correctValue: 'Exterior ledge with a fence',
   },
   {
-    id: 26,
+    id: 'quiz_26',
     question: 'What tool helps to cut wood?',
     options: ['Saw', 'Ruler', 'Sponge', 'Paintbrush'],
     correctValue: 'Saw',
   },
   {
-    id: 27,
+    id: 'quiz_27',
     question: 'What is a building project?',
     options: [
       'Drawing or plan of construction',
@@ -194,13 +196,13 @@ export const GAME_QUIZ = [
     correctValue: 'Drawing or plan of construction',
   },
   {
-    id: 28,
+    id: 'quiz_28',
     question: 'What material is used for roofing?',
     options: ['Metal tile', 'Cardboard', 'Film', 'Paper'],
     correctValue: 'Metal tile',
   },
   {
-    id: 29,
+    id: 'quiz_29',
     question: 'What is a ladder?',
     options: [
       'Means of transportation between floors',
@@ -211,7 +213,7 @@ export const GAME_QUIZ = [
     correctValue: 'Means of transportation between floors',
   },
   {
-    id: 30,
+    id: 'quiz_30',
     question: 'What is the main safety principle in construction?',
     options: [
       'Work without a helmet',
@@ -230,7 +232,7 @@ export const QUIZ_START_TEXT = {
   btn_text: 'Start Quiz',
 };
 
-export const QUIZ_RESULTS = [
+export const QUIZ_RESULTS_TEXT = [
   {
     id: 'failed',
     minScore: 0,
@@ -249,4 +251,4 @@ export const QUIZ_RESULTS = [
 ];
 
 export const SINGLE_QUIZ_QUESTIONS = 5;
-export const TIMER_SECONDS = 30;
+export const QUIZ_TIMER_MS = 30000;

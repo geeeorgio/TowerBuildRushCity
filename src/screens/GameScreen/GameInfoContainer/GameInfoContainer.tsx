@@ -24,16 +24,18 @@ const GameInfoContainer = ({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (timeLeft <= 999) {
-        clearInterval(interval);
-        onStartGame();
-        return;
-      }
-      setTimeLeft(timeLeft - 1000);
+      setTimeLeft((prev) => {
+        if (prev <= 1000) {
+          clearInterval(interval);
+          onStartGame();
+          return 0;
+        }
+        return prev - 1000;
+      });
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timeLeft, onStartGame]);
+  }, [onStartGame]);
 
   return (
     <CustomContainer colorVariant="lightBlue" style={styles.setupContainer}>
