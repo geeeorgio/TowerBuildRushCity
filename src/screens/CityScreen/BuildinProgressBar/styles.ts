@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     height: hp(16),
     padding: wp(4),
     borderRadius: wp(10),
-    backgroundColor: COLORS.blue_border,
+    backgroundColor: COLORS.quiz_blue,
     overflow: 'hidden',
   },
   fillText: {

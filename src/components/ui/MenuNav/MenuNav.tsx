@@ -24,16 +24,19 @@ const MenuNav = () => {
           }
           style={[
             styles.button,
-            item.title === 'My city' && styles.cityBtn,
+            item.title === 'My Garden' && styles.cityBtn,
             item.title === 'About' && styles.aboutBtn,
           ]}
-          variant={item.title === 'My city' ? 'yellow' : 'blue'}
+          variant={item.title === 'My Garden' ? 'yellow' : 'blue'}
         >
           {item.title === 'About' ? (
             <CustomIcon name="info" width={wp(30)} height={hp(30)} />
           ) : (
             <CustomText
-              style={[styles.text, item.title === 'My city' && styles.cityText]}
+              style={[
+                styles.text,
+                item.title === 'My Garden' && styles.cityText,
+              ]}
             >
               {item.title}
             </CustomText>

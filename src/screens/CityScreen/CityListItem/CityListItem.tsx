@@ -6,7 +6,7 @@ import BuildingProgressBar from '../BuildinProgressBar/BuildingProgressBar';
 import { styles } from './styles';
 
 import { CustomButton } from 'src/components';
-import { PLATE_FRAME } from 'src/constants';
+// import { PLATE_FRAME } from 'src/constants';
 import type { Building } from 'src/types';
 
 interface CityListItemProps {
@@ -27,14 +27,14 @@ const CityListItem = ({ building, onOpenBuildingMode }: CityListItemProps) => {
           source={building.image}
           resizeMode="contain"
           style={styles.buildingImage}
-          blurRadius={building.isOpen ? 0 : 1}
+          // blurRadius={building.isOpen ? 0 : 1}
         />
 
-        <Image
+        {/* <Image
           source={PLATE_FRAME}
           resizeMode="contain"
           style={styles.plateImage}
-        />
+        /> */}
 
         {!building.isOpen && !building.isBuilding && (
           <View style={styles.bricksCountBarContainer}>

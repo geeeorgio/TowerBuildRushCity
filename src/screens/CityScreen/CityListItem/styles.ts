@@ -15,10 +15,10 @@ export const styles = StyleSheet.create({
     position: 'relative',
   },
   buildingImage: {
-    width: '80%',
-    height: '80%',
+    width: '100%',
+    height: '100%',
     zIndex: 3,
-    marginBottom: '-12%',
+    // marginBottom: '-12%',
   },
   plateImage: {
     width: '100%',

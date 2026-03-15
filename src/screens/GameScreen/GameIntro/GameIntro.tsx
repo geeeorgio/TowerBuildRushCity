@@ -31,11 +31,11 @@ const GameIntro = ({ onStartGame }: GameIntroProps) => {
 
       <View style={styles.bottomContainer}>
         <View style={styles.houseImgContainer}>
-          <Image
+          {/* <Image
             source={MINI_GAME_IMG}
             style={styles.houseImg}
             resizeMode="contain"
-          />
+          /> */}
         </View>
         <CustomButton onPress={onStartGame} style={styles.btn}>
           <CustomText style={styles.btnText}>

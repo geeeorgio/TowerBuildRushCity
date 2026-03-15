@@ -27,7 +27,7 @@ const CityScreen = () => {
       return;
     }
     if (bricksContextCount < building.price) {
-      setErrorMessage('Not enough bricks');
+      setErrorMessage('Not enough fruits');
       return;
     }
 
@@ -37,7 +37,7 @@ const CityScreen = () => {
 
   return (
     <View style={styles.container}>
-      <CustomHeader title="My City" />
+      <CustomHeader title="My Garden" />
       <View style={styles.bricksCountBarContainer}>
         <BricksCountBar count={bricksContextCount} />
       </View>

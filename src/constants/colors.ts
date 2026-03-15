@@ -1,23 +1,23 @@
 export const COLORS = {
   white: '#FFFFFF',
-  black: '#000000',
-  yellow: '#FFC800',
+  black: '#1C1C1E',
+  yellow: '#FFB347',
 
-  green: '#00C524',
-  red: '#C50003',
+  green: '#127E11',
+  red: '#D81E05',
 
-  yellow_border: '#917201',
-  blue_border: '#033869',
-  green_border: '#047018',
-  red_border: '#690405',
+  yellow_border: '#E67E22',
+  blue_border: 'rgba(205, 115, 12, 0.8)',
+  green_border: '#E07A5F',
+  red_border: '#8B0000',
 
-  quiz_blue: 'rgba(83, 172, 254, 0.8)',
-  quiz_yellow: 'rgba(255, 200, 0, 0.8)',
-  blue_dot: '#1765A3',
-  blue_btn: '#3F97E7',
+  quiz_blue: 'rgba(75, 105, 80, 0.8)',
+  quiz_yellow: 'rgba(255, 179, 71, 0.8)',
+  blue_dot: '#FF8C00',
+  blue_btn: 'rgba(225, 115, 12, 0.7)',
 
-  blue_gradient: ['#53ACFE', '#1A70BE'],
+  blue_gradient: ['rgba(225, 115, 12, 0.9)', 'rgba(225, 135, 32, 0.7)'],
 
-  btn_light_overlay: 'rgba(255, 255, 255, 0.1)',
-  btn_dark_overlay: 'rgba(0, 0, 0, 0.6)',
+  btn_light_overlay: 'rgba(255, 255, 255, 0.15)',
+  btn_dark_overlay: 'rgba(30, 30, 32, 0.6)',
 };

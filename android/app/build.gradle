@@ -79,7 +79,7 @@ android {
 
     namespace "com.towerbuildrushcity"
     defaultConfig {
-        applicationId "com.towerbuildrushcity"
+        applicationId "com.buildjuicyfruitsgarden"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

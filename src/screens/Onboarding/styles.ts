@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: sp(24),
     fontFamily: FONTS.SemiBold,
-    color: COLORS.yellow,
+    color: COLORS.white,
     textShadowColor: COLORS.yellow_border,
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 1,
@@ -70,6 +70,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
+    height: hp(400),
     zIndex: 1,
   },
   btn: {
@@ -80,7 +81,7 @@ export const styles = StyleSheet.create({
     paddingVertical: hp(10),
   },
   btnText: {
-    fontSize: sp(24),
+    fontSize: sp(22),
     color: COLORS.black,
     textAlign: 'center',
   },

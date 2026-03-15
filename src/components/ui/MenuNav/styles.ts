@@ -24,12 +24,12 @@ export const styles = StyleSheet.create({
     height: hp(66),
   },
   cityText: {
-    fontSize: sp(26),
+    fontSize: sp(24),
     fontFamily: FONTS.SemiBold,
     color: COLORS.black,
     textAlign: 'center',
   },
   text: {
-    fontSize: sp(20),
+    fontSize: sp(18),
   },
 });
