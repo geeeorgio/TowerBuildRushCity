@@ -38,6 +38,6 @@ export const styles = StyleSheet.create({
   fill: {
     height: '100%',
     borderRadius: wp(10),
-    backgroundColor: COLORS.blue_gradient[0],
+    backgroundColor: COLORS.green,
   },
 });
