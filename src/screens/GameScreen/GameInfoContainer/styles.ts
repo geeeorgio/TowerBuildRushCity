@@ -28,9 +28,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: sp(22),
-    color: COLORS.yellow,
-    textShadowColor: COLORS.yellow_border,
+    fontSize: sp(20),
+    color: COLORS.white,
+    textShadowColor: COLORS.blue_border,
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2,
   },

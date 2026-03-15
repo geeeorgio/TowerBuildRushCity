@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: sp(24),
     fontFamily: FONTS.SemiBold,
-    color: COLORS.white,
+    color: COLORS.black,
     textShadowColor: COLORS.yellow_border,
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 1,

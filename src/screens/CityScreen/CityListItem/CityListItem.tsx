@@ -17,7 +17,7 @@ interface CityListItemProps {
 const CityListItem = ({ building, onOpenBuildingMode }: CityListItemProps) => {
   return (
     <CustomButton
-      variant="default"
+      variant="yellow"
       onPress={() => onOpenBuildingMode(building)}
       style={styles.item}
       disabled={building.isOpen}

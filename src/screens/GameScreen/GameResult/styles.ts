@@ -32,8 +32,8 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: sp(26),
-    color: COLORS.yellow,
-    textShadowColor: COLORS.yellow_border,
+    color: COLORS.white,
+    textShadowColor: COLORS.blue_border,
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2,
   },

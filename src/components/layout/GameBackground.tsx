@@ -14,7 +14,7 @@ const GameBackground = ({ children }: GameBackgroundProps) => {
       source={MAIN_BACKGROUND}
       resizeMode="cover"
       style={styles.background}
-      blurRadius={1}
+      // blurRadius={1}
     >
       <SafeAreaView style={styles.safeArea}>{children}</SafeAreaView>
     </ImageBackground>

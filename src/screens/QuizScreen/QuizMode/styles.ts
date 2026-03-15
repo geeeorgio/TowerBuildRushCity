@@ -37,8 +37,8 @@ export const styles = StyleSheet.create({
   questionNumber: {
     fontSize: sp(22),
     fontFamily: FONTS.Bold,
-    color: COLORS.yellow,
-    textShadowColor: COLORS.yellow_border,
+    color: COLORS.white,
+    textShadowColor: COLORS.blue_border,
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2,
   },
